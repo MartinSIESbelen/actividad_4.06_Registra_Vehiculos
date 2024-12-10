@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Test set: prog.unidad04.practica406.libreria.TestAutomovil
+-------------------------------------------------------------------------------
+Tests run: 24, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.028 s <<< FAILURE! - in prog.unidad04.practica406.libreria.TestAutomovil
+testAutomovilMatriculaLetraNoValida2  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilMatriculaLetraNoValida2(TestAutomovil.java:88)
+
+testAutomovilPlazasNoValidas  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilPlazasNoValidas(TestAutomovil.java:116)
+
+testAutomovilaFechaNull  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.NullPointerException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilaFechaNull(TestAutomovil.java:95)
+
+testAutomovilMatriculaLetraNoValida  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilMatriculaLetraNoValida(TestAutomovil.java:79)
+
+testAutomovilMatriculaNumeroIncorrecto  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilMatriculaNumeroIncorrecto(TestAutomovil.java:55)
+
+testAutomovilColorNull  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.NullPointerException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilColorNull(TestAutomovil.java:102)
+
+testAutomovilColorNoValido  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at prog.unidad04.practica406.libreria.TestAutomovil.testAutomovilColorNoValido(TestAutomovil.java:109)
+
