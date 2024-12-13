@@ -1,0 +1,85 @@
+
+
+import java.util.Scanner;
+
+public class VehiculosApp {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println("PRÁCTICA DE Martín Sierra Godínes. GESTIÓN DE VEHÍCULOS");
+
+    System.out.println("Introduzca la matrícula del automóvil (4 números, 0 o mas espacios y tres letras mayúsculas):");
+    String matriculaAuto = sc.nextLine();
+
+    System.out.println("Introduzca el día de la fecha de matriculación del automóvil:");
+    int diaAuto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca el mes de la fecha de matriculación del automóvil:");
+    int mesAuto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca el año de la fecha de matriculación del automóvil:");
+    int anioAuto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca el color del automóvil (blanco, negro o azul):");
+    String colorAuto = sc.nextLine().trim().toUpperCase();
+
+    System.out.println("Introduzca el número de plazas del vehículo (1 o mas):");
+    int plazasAuto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca la matrícula de la motocicleta (4 números, 0 o mas espacios y tres letras mayúsculas):");
+    String matriculaMoto = sc.nextLine();
+
+    System.out.println("Introduzca el día de la fecha de matriculación de la motocicleta:");
+    int diaMoto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca el mes de la fecha de matriculación de la motocicleta:");
+    int mesMoto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca el año de la fecha de matriculación de la motocicleta:");
+    int anioMoto = Integer.parseInt(sc.nextLine());
+
+    System.out.println("Introduzca la cilindrada de la motocicleta (50 o mas):");
+    int cilindradaMoto = Integer.parseInt(sc.nextLine());
+
+    Fecha fechaMatriculacionAuto = new Fecha(diaAuto, mesAuto, anioAuto);
+    Fecha fechaMatriculacionMoto = new Fecha(diaMoto, mesMoto, anioMoto);
+
+    Automovil auto = null;
+    Motocicleta moto = null;
+    
+    try {
+        auto = new Automovil(matriculaAuto, fechaMatriculacionAuto, colorAuto, plazasAuto);
+        moto = new Motocicleta(matriculaMoto, fechaMatriculacionMoto); 
+    } catch (IllegalArgumentException e) {
+        System.out.println("Error: " + e.getMessage());
+        return;
+    }
+
+    long diasMatriculacionAuto = fechaMatriculacionAuto.diasTranscurridos();
+    long diasMatriculacionMoto = fechaMatriculacionMoto.diasTranscurridos();
+
+    boolean autoAntesMoto = fechaMatriculacionAuto.compara(fechaMatriculacionMoto) < 0;
+    
+
+    System.out.println("\nLos datos del automóvil son:");
+    System.out.println("Matrícula: " + auto.getMatricula() + ", Fecha Matriculación: " + fechaMatriculacionAuto);
+    System.out.println("Color: " + auto.getColor() + ", Num. Plazas: " + auto.getPlazas());
+    System.out.println("Distintivo ambiental: " + auto.getDistintivo());
+
+    System.out.println("\nLos datos de la motocicleta son:");
+    System.out.println("Matrícula: " + moto.getMatricula() + ", Fecha Matriculación: " + fechaMatriculacionMoto);
+    System.out.println("Cilindrada: " + cilindradaMoto);
+    System.out.println("Distintivo ambiental: " + moto.getDistintivo());
+
+    System.out.println("\nEl automóvil lleva matriculado " + diasMatriculacionAuto + " días");
+    System.out.println("La motocicleta lleva matriculada " + diasMatriculacionMoto + " días");
+
+    if (autoAntesMoto) {
+        System.out.println("El automóvil se matriculó antes que la motocicleta");
+    } else {
+        System.out.println("La motocicleta se matriculó antes que el automóvil");
+    }
+
+    System.out.println("Número de vehículos matriculados: 2");
+  }
+}
