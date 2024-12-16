@@ -70,6 +70,7 @@ public class Vehiculo {
      * @return Devuelve una cadena que incluye la matrícula y la fecha de matriculación.
      * FechaMatricula usa el metodo toString de la clase Fecha para salir con el formato correcto.
      */
+    @Override
     public String toString(){
         return "Matricula: " + this.matricula + ", Fecha Matriculación: " + this.fechaMatricula.toString();
     }

@@ -82,6 +82,7 @@ public class Automovil extends Vehiculo implements MaquinaConDistintivoAmbiental
      * Devuelve una representación en texto del automóvil.
      * @return Una cadena que incluye información del automóvil.
      */
+    @Override
     public String toString() {
         return super.toString() + ", Color: " + this.color + ", Num. Plazas: " + this.plazas;
     }
