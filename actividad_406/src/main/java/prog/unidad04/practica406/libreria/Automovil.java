@@ -86,7 +86,7 @@ public class Automovil extends Vehiculo implements MaquinaConDistintivoAmbiental
   
     private boolean esColorValido(String color) {
   
-      return color == COLOR_AZUL || color == COLOR_NEGRO || color == COLOR_BLANCO;
+      return color.equals(COLOR_AZUL) || color.equals(COLOR_NEGRO) || color.equals(COLOR_BLANCO);
     }
   
     /**
