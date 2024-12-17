@@ -2,84 +2,180 @@
 
 import java.util.Scanner;
 
+import java.time.LocalDate;
+import java.util.Scanner;
+
 public class VehiculosApp {
   public static void main(String[] args) {
+    // Inicializo me Scanner y lo llamo sc.
     Scanner sc = new Scanner(System.in);
-    
-    System.out.println("PRÁCTICA DE Martín Sierra Godínes. GESTIÓN DE VEHÍCULOS");
 
-    System.out.println("Introduzca la matrícula del automóvil (4 números, 0 o mas espacios y tres letras mayúsculas):");
-    String matriculaAuto = sc.nextLine();
+    // Encabezado de la "interfaz".
+    System.out.println("PRÁCTICA DE Martín Sierra Godínez. GESTIÓN DE VEHÍCULOS");
 
-    System.out.println("Introduzca el día de la fecha de matriculación del automóvil:");
-    int diaAuto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca el mes de la fecha de matriculación del automóvil:");
-    int mesAuto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca el año de la fecha de matriculación del automóvil:");
-    int anioAuto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca el color del automóvil (blanco, negro o azul):");
-    String colorAuto = sc.nextLine().trim().toUpperCase();
-
-    System.out.println("Introduzca el número de plazas del vehículo (1 o mas):");
-    int plazasAuto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca la matrícula de la motocicleta (4 números, 0 o mas espacios y tres letras mayúsculas):");
-    String matriculaMoto = sc.nextLine();
-
-    System.out.println("Introduzca el día de la fecha de matriculación de la motocicleta:");
-    int diaMoto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca el mes de la fecha de matriculación de la motocicleta:");
-    int mesMoto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca el año de la fecha de matriculación de la motocicleta:");
-    int anioMoto = Integer.parseInt(sc.nextLine());
-
-    System.out.println("Introduzca la cilindrada de la motocicleta (50 o mas):");
-    int cilindradaMoto = Integer.parseInt(sc.nextLine());
-
-    Fecha fechaMatriculacionAuto = new Fecha(diaAuto, mesAuto, anioAuto);
-    Fecha fechaMatriculacionMoto = new Fecha(diaMoto, mesMoto, anioMoto);
-
+    // Inicializo los objetos auto tipo Automovil y moto tipo Motocicleta
     Automovil auto = null;
     Motocicleta moto = null;
-    
-    try {
-        auto = new Automovil(matriculaAuto, fechaMatriculacionAuto, colorAuto, plazasAuto);
-        moto = new Motocicleta(matriculaMoto, fechaMatriculacionMoto); 
-    } catch (IllegalArgumentException e) {
-        System.out.println("Error: " + e.getMessage());
-        return;
-    }
 
-    long diasMatriculacionAuto = fechaMatriculacionAuto.diasTranscurridos();
-    long diasMatriculacionMoto = fechaMatriculacionMoto.diasTranscurridos();
+    // declaro un booleano que controlo cuando salirse del do-while.
+    boolean autoCorrecto;
 
-    boolean autoAntesMoto = fechaMatriculacionAuto.compara(fechaMatriculacionMoto) < 0;
-    
+    // el do-while sirve para repetir la secuencia de introducion de datos de
+    // automovil en caso de error.
+    do {
+      try {
+        // Pido por pantalla al usario que introduzca la matrícula del automovil
+        // (matriculaAuto tipo texto).
+        System.out
+            .println("Introduzca la matrícula del automóvil (4 números, 0 o más espacios y tres letras mayúsculas):");
+        String matriculaAuto = sc.nextLine();
 
+        // Pido por pantalla al usario que introduzca el día de la fecha de
+        // matriculación del auto (diaAuto un numero entero).
+        System.out.println("Introduzca el día de la fecha de matriculación del automóvil:");
+        int diaAuto = Integer.parseInt(sc.nextLine());
+
+        // Pido por pantalla al usario que introduzca el mes de la fecha de
+        // matriculación del auto (mesAuto un numero entero).
+        System.out.println("Introduzca el mes de la fecha de matriculación del automóvil:");
+        int mesAuto = Integer.parseInt(sc.nextLine());
+
+        // Pido por pantalla al usario que introduzca el año de la fecha de
+        // matriculación del auto (anioAuto un numero entero).
+        System.out.println("Introduzca el año de la fecha de matriculación del automóvil:");
+        int anioAuto = Integer.parseInt(sc.nextLine());
+
+        // Pido por pantalla al usario que introduzca el color del automovil (color tipo
+        // texto).
+        System.out.println("Introduzca el color del automóvil (blanco, negro o azul):");
+        String color = sc.nextLine();
+
+        // Pido por pantalla al usario que introduzca el numero de plazas que tiene el
+        // automóvil (plazas un numero entero).
+        System.out.println("Introduzca el número de plazas del vehículo (1 o más):");
+        int plazas = Integer.parseInt(sc.nextLine());
+        
+        //Controlo que el color introducido sea uno de los esperados
+        switch (color) {
+        case "blanco":
+          color = Automovil.COLOR_BLANCO;
+          break;
+
+        case "negro":
+          color = Automovil.COLOR_NEGRO;
+          break;
+
+        case "azul":
+          color = Automovil.COLOR_AZUL;
+          break;
+        }
+
+        // Creo un objeto fechaAutomovil tipo Fecha y le introduzco los valores que se
+        // le pidieron al usuario por pantalla.
+        Fecha fechaMatriculacionAuto = new Fecha(diaAuto, mesAuto, anioAuto);
+
+        // Le implemento los valores introducidos por el usuario al automóvil.
+        auto = new Automovil(matriculaAuto, fechaMatriculacionAuto, color, plazas);
+
+        autoCorrecto = true;
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        autoCorrecto = false;
+      }
+    } while (!autoCorrecto);
+
+    // declaro un booleano que controle cuando salir del do-while.
+    boolean motoCorrecta;
+
+    // el do-while sirve para repetir la secuencia de introducción de datos de
+    // motocicleta en caso de error.
+    do {
+      try {
+        // Pido por pantalla al usario que introduzca la matrícula de la motocicleta
+        // (matriculaMoto tipo texto).
+        System.out.println(
+            "Introduzca la matrícula de la motocicleta (4 números, 0 o más espacios y tres letras mayúsculas):");
+        String matriculaMoto = sc.nextLine();
+
+        // Pido por pantalla al usario que introduzca el día de la fecha de
+        // matriculación de la moto (diaMoto un número entero).
+        System.out.println("Introduzca el día de la fecha de matriculación de la motocicleta:");
+        int diaMoto = Integer.parseInt(sc.nextLine());
+
+        // Pido por pantalla al usario que introduzca el mes de la fecha de
+        // matriculación de la moto (mesMoto un número entero).
+        System.out.println("Introduzca el mes de la fecha de matriculación de la motocicleta:");
+        int mesMoto = Integer.parseInt(sc.nextLine());
+
+        // Pido por pantalla al usario que introduzca el año de la fecha de
+        // matriculación de la moto (anioMoto un número entero).
+        System.out.println("Introduzca el año de la fecha de matriculación de la motocicleta:");
+        int anioMoto = Integer.parseInt(sc.nextLine());
+
+        // Pido por pantalla al usario que introduzca la cilindrada de la moto
+        // (cilindrada un número entero).
+        System.out.println("Introduzca la cilindrada de la motocicleta (50 o más):");
+        int cilindrada = Integer.parseInt(sc.nextLine());
+
+        // Creo un objeto fechaMotocicleta tipo Fecha y le introduzco los valores que se
+        // le pidieron al usuario por pantalla.
+        Fecha fechaMatriculacionMoto = new Fecha(diaMoto, mesMoto, anioMoto);
+
+        // Introduzco los valores pedidos por pantalla dentro del objeto motocicleta
+        moto = new Motocicleta(matriculaMoto, fechaMatriculacionMoto, cilindrada);
+
+        motoCorrecta = true;
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        motoCorrecta = false;
+      }
+
+    } while (!motoCorrecta);
+
+    //Creo un booleano para comprobar que fecha es anterior.
+    boolean autoAntesMoto = auto.getFechaMatriculacion().compara(moto.getFechaMatriculacion()) < 0;
+
+    // Saco por pantalla los datos del automóvil
     System.out.println("\nLos datos del automóvil son:");
-    System.out.println("Matrícula: " + auto.getMatricula() + ", Fecha Matriculación: " + fechaMatriculacionAuto);
-    System.out.println("Color: " + auto.getColor() + ", Num. Plazas: " + auto.getPlazas());
-    System.out.println("Distintivo ambiental: " + auto.getDistintivo());
+    System.out.printf(auto.toString());
+    System.out.printf("Distintivo ambiental: " + auto.getDistintivo());
 
+    // Saco por pantalla los datos de la motocicleta
     System.out.println("\nLos datos de la motocicleta son:");
-    System.out.println("Matrícula: " + moto.getMatricula() + ", Fecha Matriculación: " + fechaMatriculacionMoto);
-    System.out.println("Cilindrada: " + cilindradaMoto);
-    System.out.println("Distintivo ambiental: " + moto.getDistintivo());
+    System.out.printf(moto.toString());
+    System.out.printf("Distintivo ambiental: " + moto.getDistintivo() + "%n");
 
-    System.out.println("\nEl automóvil lleva matriculado " + diasMatriculacionAuto + " días");
-    System.out.println("La motocicleta lleva matriculada " + diasMatriculacionMoto + " días");
+    // Creo una variable para guardar el día actual.
+    int diaFechaActual = LocalDate.now().getDayOfMonth();
 
-    if (autoAntesMoto) {
-        System.out.println("El automóvil se matriculó antes que la motocicleta");
-    } else {
-        System.out.println("La motocicleta se matriculó antes que el automóvil");
+    // Creo una variable para guardar el mes actual.
+    int mesFechaActual = LocalDate.now().getMonthValue();
+
+    // Creo una variable para guardar el año actual.
+    int anyoFechaActual = LocalDate.now().getYear();
+
+    try {
+
+      // Saco por pantalla los días que llevan matriculados el auto y la moto desde
+      // el (1/1/1900) hasta la fecha introducida.
+      System.out.printf("El automóvil lleva matriculado %d días%n",
+          auto.getFechaMatriculacion().diasEntre(new Fecha(diaFechaActual, mesFechaActual, anyoFechaActual)));
+      System.out.printf("La motocicleta lleva matriculada %d días%n",
+          moto.getFechaMatriculacion().diasEntre(new Fecha(diaFechaActual, mesFechaActual, anyoFechaActual)));
+
+      // Controlo la excepción FechaException para que muestre un mensaje por pantalla
+      // en caso de fallar el método diasEntre().
+    } catch (FechaException e) {
+      System.out.printf(e.getMessage());
     }
-
-    System.out.println("Número de vehículos matriculados: 2");
-  }
+    
+    //Me permite sacar por pantalla 
+    if (autoAntesMoto) {
+      System.out.println("El automóvil se matriculó antes que la motocicleta");
+    } else {
+      System.out.println("La motocicleta se matriculó antes que el automóvil");
+    }
+    //Saco por pantalla el número de vehículos imprimidos.
+    System.out.println("Número de vehículos matriculados: 2");
+  }
 }
