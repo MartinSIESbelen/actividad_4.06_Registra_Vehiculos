@@ -29,6 +29,10 @@ public class Motocicleta extends Vehiculo implements MaquinaConDistintivoAmbient
 
   }
 
+  public int getCilindrada() {
+    return cilindrada;
+  }
+
   /**
    * Metodo get que obtiene el distintivo ambiental segun la cilindrada.
    * 

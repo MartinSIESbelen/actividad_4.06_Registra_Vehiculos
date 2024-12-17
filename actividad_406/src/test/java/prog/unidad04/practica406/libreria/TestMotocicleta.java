@@ -3,10 +3,6 @@ package prog.unidad04.practica406.libreria;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
-import prog.unidad04.practica406.libreria.Automovil;
-import prog.unidad04.practica406.libreria.Fecha;
-import prog.unidad04.practica406.libreria.MaquinaConDistintivoAmbiental;
-import prog.unidad04.practica406.libreria.Motocicleta;
 
 /**
  * Clase que prueba la clase Motocicleta

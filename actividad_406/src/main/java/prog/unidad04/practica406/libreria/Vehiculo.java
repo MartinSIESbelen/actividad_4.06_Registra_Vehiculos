@@ -84,6 +84,7 @@ public class Vehiculo {
    *         matriculación. FechaMatricula usa el método toString de la clase
    *         Fecha para salir con el formato correcto.
    */
+  @Override
   public String toString() {
     return "Matrícula: " + this.matricula + ", Fecha Matriculación: " + this.fechaMatricula.toString();
   }
